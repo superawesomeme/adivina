@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adivina — Classroom Game</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+<!--
+  Adivina — fullscreen classroom whiteboard version
+  Created by Shaun Daubney.
+
+  Paste this whole snippet into your page. It is self-contained: HTML + CSS + JavaScript.
+-->
+<div class="adivina-game" id="adivina-game">
+  <button class="adivina-fullscreen" id="adivina-fullscreen" type="button" aria-label="Pantalla completa">⤢</button>
+  <main class="adivina-shell" aria-label="Juego de adivinar números">
+    <section class="adivina-circles" aria-label="Zona de juego">
+      <div class="adivina-side-circle lowest" id="adivina-low-circle" aria-label="Número mínimo más cercano">
+        <span class="adivina-side-value" id="adivina-low-value" aria-live="polite"></span>
+        <div class="adivina-reel" id="adivina-low-reel" aria-hidden="true"></div>
+        <span class="adivina-side-label">min</span>
+      </div>
+
+      <div class="adivina-main-circle">
+        <form class="adivina-form" id="adivina-form" autocomplete="off">
+          <div class="adivina-input-wrap">
+            <input
+              class="adivina-input"
+              id="adivina-input"
+              name="guess"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="50"
+              placeholder="?"
+              aria-label="Ingresar un número"
+              required
+            />
+          </div>
+          <button class="adivina-submit" id="adivina-submit" type="submit">Adivina</button>
+        </form>
+      </div>
+
+      <div class="adivina-side-circle highest" id="adivina-high-circle" aria-label="Número máximo más cercano">
+        <span class="adivina-side-value" id="adivina-high-value" aria-live="polite"></span>
+        <div class="adivina-reel" id="adivina-high-reel" aria-hidden="true"></div>
+        <span class="adivina-side-label">max</span>
+      </div>
+    </section>
+
+    <section class="adivina-result" aria-label="Resultado">
+      <div class="adivina-result-text" id="adivina-result" aria-live="assertive">Adivina el número</div>
+      <div class="adivina-reel" id="adivina-result-reel" aria-hidden="true"></div>
+    </section>
+
+    <section class="adivina-controls" aria-label="Controles del juego">
+      <div class="adivina-guess-pill"><span id="adivina-guess-count">0</span><span id="adivina-guess-word">intentos</span></div>
+      <button class="adivina-action" id="adivina-reset" type="button">Reiniciar</button>
+      <button class="adivina-action" id="adivina-settings" type="button" aria-haspopup="dialog">Ajustes</button>
+    </section>
+  </main>
+
+  <p class="adivina-copyright" id="adivina-copyright">Creado por Shaun Daubney.</p>
+  <div class="adivina-confetti" id="adivina-confetti" aria-hidden="true"></div>
+</div>
+
+<div class="adivina-settings-backdrop" id="adivina-settings-backdrop" role="dialog" aria-modal="true" aria-labelledby="adivina-settings-title">
+  <div class="adivina-settings-panel">
+    <div class="adivina-settings-header">
+      <h2 class="adivina-settings-title" id="adivina-settings-title">Ajustes</h2>
+      <button class="adivina-close" id="adivina-close" type="button" aria-label="Cerrar ajustes">×</button>
+    </div>
+
+    <div class="adivina-field">
+      <label class="adivina-label" id="adivina-language-label" for="adivina-language">Idioma</label>
+      <select class="adivina-select" id="adivina-language">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="adivina-field">
+      <label class="adivina-label" id="adivina-level-label" for="adivina-level">Elige nivel</label>
+      <select class="adivina-select" id="adivina-level">
+        <option value="50">Normal — 1 a 50</option>
+        <option value="100">Difícil — 1 a 100</option>
+        <option value="1000">Súper — 1 a 1.000</option>
+        <option value="9999">Extremo — 1 a 9.999</option>
+      </select>
+    </div>
+
+    <div class="adivina-panel-actions">
+      <button class="adivina-panel-button primary" id="adivina-apply" type="button">Aplicar</button>
+      <button class="adivina-panel-button secondary" id="adivina-cancel" type="button">Cancelar</button>
+    </div>
+
+    <p class="adivina-small-note" id="adivina-small-note">Cambiar el nivel empieza una partida nueva con otro número secreto.</p>
+  </div>
+</div>
+</body>
+</html>
